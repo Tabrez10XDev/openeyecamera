@@ -2,10 +2,41 @@ import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity } from 'r
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome } from '@expo/vector-icons';
 import Animated, { Easing, withSpring, useSharedValue, useAnimatedStyle, withRepeat, withSequence } from 'react-native-reanimated';
-
+import * as Speech from 'expo-speech';
+import { useEffect } from 'react';
+// import { SpeechRecognition } from '@react-native-voice/voice';
+import { useState } from 'react';
 export default function Dashboard({ navigation }) {
 
 
+    const [state, setState] = useState({
+        isRecording: false,
+        recognizedText: '',
+    }
+    )
+
+
+    // const startRecognition = () => {
+    //     setState({
+    //         isRecording: true,
+    //         recognizedText: "",
+    //     })
+    //     SpeechRecognition.startSpeech(
+    //         (result) => {
+    //             setState({
+    //                 isRecording: false,
+    //                 recognizedText: result.text,
+    //             })
+    //         },
+    //         (error) => {
+    //             console.log(error);
+    //         }
+    //     );
+    // };
+
+    // const stopRecognition = () => {
+    //     SpeechRecognition.stopSpeech();
+    // };
     const scale = useSharedValue(1); // Initial scale value
     const translateY = useSharedValue(0); // Y-translation value
 
@@ -14,6 +45,40 @@ export default function Dashboard({ navigation }) {
             transform: [{ scale: scale.value }, { translateY: translateY.value }],
         };
     });
+
+    // useEffect(() => {
+    //     async function initializeSpeechRecognition() {
+    //         // console.log(status)
+    //         // if (status !== 'granted') {
+    //         // console.error('Permission to use Speech Recognition denied.');
+    //         // return;
+    //         // }
+
+    //         Speech.recognize(
+    //             {
+    //                 onRecognitionComplete: ({ transcription }) => {
+    //                     console.log('Transcription: ', transcription);
+    //                     if (transcription.includes("scene")) navigation.navigate("ImageCaption")
+    //                     // Handle the transcribed text as needed
+    //                 },
+    //             },
+    //             true // Enable speech recognition
+    //         );
+    //     }
+
+    //     setTimeout(() => {
+    //         initializeSpeechRecognition();
+
+    //     }, 100)
+    // }, []);
+
+    const startSpeechRecognition = () => {
+        // startRecognition()
+    };
+
+    const stopSpeechRecognition = () => {
+        // stopRecognition()
+    };
 
     const startAnimation = () => {
         scale.value = withSequence(
@@ -58,7 +123,15 @@ export default function Dashboard({ navigation }) {
             </View>
             <View style={{ width: '115%', height: '35%', borderTopRightRadius: 500, borderTopLeftRadius: 500, backgroundColor: '#0c0c0c', position: 'absolute', bottom: -100 }}></View>
             <TouchableOpacity
-            onPress={()=>{startAnimation()}}
+                onPress={() => {
+                    startAnimation()
+                    console.log("hii");
+                    startSpeechRecognition()
+                    setTimeout(() => {
+                        stopSpeechRecognition()
+                        console.log("byee");
+                    }, 5000)
+                }}
                 style={{ width: '100%', height: '30%', borderTopRightRadius: 500, borderTopLeftRadius: 500, backgroundColor: '#161616', position: 'absolute', bottom: -100, justifyContent: 'center', alignItems: 'center' }}>
                 <Animated.View style={animatedStyle}>
 

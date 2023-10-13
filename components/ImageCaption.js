@@ -1,18 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 import axios from 'axios';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RootSiblingParent } from 'react-native-root-siblings';
-import { createNavigationContainerRef } from "@react-navigation/native"
 import { MaterialIcons } from '@expo/vector-icons';
 import * as Speech from 'expo-speech';
 import Lottie from 'lottie-react-native';
 import { Ionicons } from '@expo/vector-icons';
+
+
 function ImageCaption() {
+
+  
 
   const [animSpeed, setAnimSpeed] = useState(false)
   const animRef = useRef()
