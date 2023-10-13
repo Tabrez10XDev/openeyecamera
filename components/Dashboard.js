@@ -17,15 +17,15 @@ export default function Dashboard({ navigation }) {
 
     const startAnimation = () => {
         scale.value = withSequence(
-            withSpring(1.5, { damping: 2, stiffness: 80 }),
-            withSpring(1)
+            withSpring(1.3, { damping: 2, stiffness: 90 }),
+            withSpring(1),
         );
 
-        translateY.value = withRepeat(
-            withSpring(100, { damping: 2, stiffness: 80, velocity: 1 }),
-            -1, // Set to -1 to repeat indefinitely
-            false // Use native driver
-        );
+        // translateY.value = withRepeat(
+        //     withSpring(100, { damping: 2, stiffness: 80, velocity: 1 }),
+        //     -1, // Set to -1 to repeat indefinitely
+        //     false // Use native driver
+        // );
     };
 
 
@@ -53,18 +53,18 @@ export default function Dashboard({ navigation }) {
 
                 <TouchableOpacity onPress={() => { navigation.navigate("ImageCaption") }} style={{ height: 180, width: 165, backgroundColor: "#161616", marginTop: 24, borderRadius: 20, alignItems: "center" }}>
                     <Image style={{ height: 30, width: 30, marginTop: "40%", resizeMode: 'contain' }} source={require('../assets/image2icon.png')}></Image>
-                    <Text style={{ marginTop: 26, color: "#656565" }}>Explain Scene</Text>
+                    <Text style={{ marginTop: 26, color: "#656565" }}>Detect Objects</Text>
                 </TouchableOpacity>
             </View>
             <View style={{ width: '115%', height: '35%', borderTopRightRadius: 500, borderTopLeftRadius: 500, backgroundColor: '#0c0c0c', position: 'absolute', bottom: -100 }}></View>
-           <TouchableOpacity onPress={()=>{startAnimation()}}>
+            <TouchableOpacity
+            onPress={()=>{startAnimation()}}
+                style={{ width: '100%', height: '30%', borderTopRightRadius: 500, borderTopLeftRadius: 500, backgroundColor: '#161616', position: 'absolute', bottom: -100, justifyContent: 'center', alignItems: 'center' }}>
+                <Animated.View style={animatedStyle}>
 
-           
-            <Animated.View style={animatedStyle}>
-                <TouchableOpacity style={{ width: '100%', height: '30%', borderTopRightRadius: 500, borderTopLeftRadius: 500, backgroundColor: '#161616', position: 'absolute', bottom: -100, justifyContent: 'center', alignItems: 'center' }}>
                     <FontAwesome name="microphone" size={32} color="#4368FF" style={{ marginTop: -100 }} />
-                </TouchableOpacity>
-            </Animated.View>
+                </Animated.View>
+
             </TouchableOpacity>
 
 
